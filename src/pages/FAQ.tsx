@@ -3,14 +3,16 @@ import { ChevronDown, Search } from 'lucide-react';
 import { useState } from 'react';
 import useSEO from '../hooks/useSEO';
 import NavigationArrows from '../components/NavigationArrows';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const FAQ = () => {
+  const { t } = useLanguage();
   const [activeIndex, setActiveIndex] = useState<number | null>(0);
   const [searchTerm, setSearchTerm] = useState('');
 
   useSEO({
-    title: 'FAQ - Frequently Asked Questions | CargoNova Logistics',
-    description: 'Find answers to common questions about shipping, tracking, pricing, and more. Get help with your logistics needs at CargoNova.',
+    title: t('faq.seoTitle'),
+    description: t('faq.seoDescription'),
     keywords: 'shipping FAQ, logistics questions, tracking help, freight answers, CargoNova support',
     ogImage: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=1200&h=630&fit=crop&q=80',
     canonicalPath: '/faq'
@@ -18,74 +20,74 @@ const FAQ = () => {
 
   const faqs = [
     {
-      category: 'Shipping & Delivery',
+      category: t('faq.shippingCategory'),
       questions: [
         {
-          q: 'How long does shipping take?',
-          a: 'Delivery times vary based on destination and service level. Domestic shipments typically take 2-5 business days, while international shipments can take 5-14 business days. Express options are available for faster delivery.'
+          q: t('faq.shippingQ1'),
+          a: t('faq.shippingA1')
         },
         {
-          q: 'Do you offer international shipping?',
-          a: 'Yes! We ship to over 200 countries worldwide. Our global network ensures reliable delivery to virtually any destination. International shipping rates and transit times vary by location.'
+          q: t('faq.shippingQ2'),
+          a: t('faq.shippingA2')
         },
         {
-          q: 'What items cannot be shipped?',
-          a: 'Hazardous materials, flammable liquids, perishable goods (unless specially arranged), illegal items, and certain restricted items cannot be shipped. Contact us for a complete list of prohibited items.'
+          q: t('faq.shippingQ3'),
+          a: t('faq.shippingA3')
         },
         {
-          q: 'Can I schedule a specific delivery date?',
-          a: 'Yes, we offer scheduled delivery services for an additional fee. You can choose your preferred delivery date during checkout or contact our customer service team to arrange.'
+          q: t('faq.shippingQ4'),
+          a: t('faq.shippingA4')
         }
       ]
     },
     {
-      category: 'Tracking & Updates',
+      category: t('faq.trackingCategory'),
       questions: [
         {
-          q: 'How do I track my shipment?',
-          a: 'Use your tracking number on our tracking page to get real-time updates. You\'ll also receive email and SMS notifications at key milestones during transit.'
+          q: t('faq.trackingQ1'),
+          a: t('faq.trackingA1')
         },
         {
-          q: 'What if my tracking shows no updates?',
-          a: 'Tracking information may take 24-48 hours to appear in our system after shipping. If you still don\'t see updates after this period, please contact our support team with your tracking number.'
+          q: t('faq.trackingQ2'),
+          a: t('faq.trackingA2')
         },
         {
-          q: 'Can I change the delivery address after shipping?',
-          a: 'Address changes are possible for an additional fee if the package hasn\'t reached the final delivery facility. Contact us immediately with your tracking number to request changes.'
+          q: t('faq.trackingQ3'),
+          a: t('faq.trackingA3')
         }
       ]
     },
     {
-      category: 'Pricing & Payment',
+      category: t('faq.pricingCategory'),
       questions: [
         {
-          q: 'How is shipping cost calculated?',
-          a: 'Shipping costs are based on package weight, dimensions, destination, and service level. Use our online calculator for instant quotes, or contact us for custom pricing on large or regular shipments.'
+          q: t('faq.pricingQ1'),
+          a: t('faq.pricingA1')
         },
         {
-          q: 'What payment methods do you accept?',
-          a: 'We accept all major credit cards (Visa, Mastercard, American Express), PayPal, wire transfers, and corporate accounts for business customers.'
+          q: t('faq.pricingQ2'),
+          a: t('faq.pricingA2')
         },
         {
-          q: 'Do you offer volume discounts?',
-          a: 'Yes! We offer competitive rates for high-volume shippers and corporate accounts. Contact our sales team to discuss custom pricing based on your shipping volume.'
+          q: t('faq.pricingQ3'),
+          a: t('faq.pricingA3')
         }
       ]
     },
     {
-      category: 'Insurance & Claims',
+      category: t('faq.insuranceCategory'),
       questions: [
         {
-          q: 'Is my shipment insured?',
-          a: 'Basic coverage is included for all shipments up to $100. Additional insurance is available for valuable items. We recommend insuring high-value shipments for peace of mind.'
+          q: t('faq.insuranceQ1'),
+          a: t('faq.insuranceA1')
         },
         {
-          q: 'How do I file a claim for lost or damaged items?',
-          a: 'File a claim within 30 days of delivery (or expected delivery for lost items) through our online claims portal. Provide tracking number, photos of damage, and proof of value.'
+          q: t('faq.insuranceQ2'),
+          a: t('faq.insuranceA2')
         },
         {
-          q: 'How long does the claims process take?',
-          a: 'Most claims are processed within 10-15 business days. Complex cases may take longer. You\'ll receive updates throughout the process via email.'
+          q: t('faq.insuranceQ3'),
+          a: t('faq.insuranceA3')
         }
       ]
     }
@@ -121,10 +123,10 @@ const FAQ = () => {
             className="text-center max-w-3xl mx-auto"
           >
             <h1 className="text-4xl md:text-5xl font-bold mb-4">
-              Frequently Asked Questions
+              {t('faq.title')}
             </h1>
             <p className="text-xl text-blue-100 mb-8">
-              Find answers to common questions about our services
+              {t('faq.subtitle')}
             </p>
             
             {/* Search Bar */}
@@ -132,7 +134,7 @@ const FAQ = () => {
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
               <input
                 type="text"
-                placeholder="Search for answers..."
+                placeholder={t('faq.searchPlaceholder')}
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className="w-full pl-12 pr-4 py-4 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-white/50 transition-all"

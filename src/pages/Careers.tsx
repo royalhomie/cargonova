@@ -2,8 +2,11 @@ import { motion } from 'framer-motion';
 import { Briefcase, MapPin, Clock, DollarSign, Users, TrendingUp, Heart, Award } from 'lucide-react';
 import useSEO from '../hooks/useSEO';
 import NavigationArrows from '../components/NavigationArrows';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const Careers = () => {
+  const { t } = useLanguage();
+  
   useSEO({
     title: 'Careers at CargoNova - Join Our Logistics Team | Job Opportunities',
     description: 'Explore exciting career opportunities at CargoNova. Join our global team and help shape the future of logistics. We offer competitive salaries, great benefits, and career growth.',
@@ -60,23 +63,23 @@ const Careers = () => {
   const benefits = [
     {
       icon: Heart,
-      title: 'Health & Wellness',
-      description: 'Comprehensive medical, dental, and vision coverage for you and your family'
+      title: t('careers.healthTitle'),
+      description: t('careers.healthDescription')
     },
     {
       icon: TrendingUp,
-      title: 'Career Growth',
-      description: 'Professional development programs and clear advancement opportunities'
+      title: t('careers.growthTitle'),
+      description: t('careers.growthDescription')
     },
     {
       icon: DollarSign,
-      title: 'Competitive Pay',
-      description: 'Market-leading salaries with performance bonuses and equity options'
+      title: t('careers.payTitle'),
+      description: t('careers.payDescription')
     },
     {
       icon: Clock,
-      title: 'Work-Life Balance',
-      description: 'Flexible schedules, remote work options, and generous PTO policy'
+      title: t('careers.balanceTitle'),
+      description: t('careers.balanceDescription')
     }
   ];
 
@@ -101,10 +104,10 @@ const Careers = () => {
             className="text-center max-w-3xl mx-auto"
           >
             <h1 className="text-4xl md:text-5xl font-bold mb-4">
-              Join the CargoNova Team
+              {t('careers.title')}
             </h1>
             <p className="text-xl text-blue-100">
-              Build your career with the leading innovators in global logistics
+              {t('careers.subtitle')}
             </p>
           </motion.div>
         </div>
@@ -119,9 +122,9 @@ const Careers = () => {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <h2 className="section-title">Why Work With Us</h2>
+            <h2 className="section-title">{t('careers.benefitsTitle')}</h2>
             <p className="section-subtitle max-w-2xl mx-auto">
-              We invest in our people because they're our greatest asset
+              {t('careers.benefitsSubtitle')}
             </p>
           </motion.div>
 
@@ -163,9 +166,9 @@ const Careers = () => {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <h2 className="section-title">Open Positions</h2>
+            <h2 className="section-title">{t('careers.positionsTitle')}</h2>
             <p className="section-subtitle max-w-2xl mx-auto">
-              Find your next opportunity and grow with us
+              {t('careers.positionsSubtitle')}
             </p>
           </motion.div>
 
@@ -205,7 +208,7 @@ const Careers = () => {
                       {position.salary}
                     </div>
                     <button className="btn-primary">
-                      Apply Now
+                      {t('careers.applyButton')}
                     </button>
                   </div>
                 </div>

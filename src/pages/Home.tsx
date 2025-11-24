@@ -4,10 +4,12 @@ import { ArrowRight, Package, Globe, Shield, Clock, Award, Truck, Star, CheckCir
 import useSEO from '../hooks/useSEO';
 import { useState, useEffect } from 'react';
 import NavigationArrows from '../components/NavigationArrows';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const Home = () => {
   const navigate = useNavigate();
   const [currentSlide, setCurrentSlide] = useState(0);
+  const { t } = useLanguage();
 
   useSEO({
     title: 'CargoNova - Professional Logistics & Freight Services | Global Shipping Solutions',
@@ -131,10 +133,10 @@ const Home = () => {
               className="max-w-4xl"
             >
               <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-                Professional Logistics Solutions for Your Business
+                {t('hero.title')}
               </h1>
               <p className="text-xl md:text-2xl mb-8 text-blue-100">
-                Fast, reliable, and secure shipping services worldwide. Track your packages in real-time and experience excellence in every delivery.
+                {t('hero.subtitle')}
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <button
@@ -142,21 +144,21 @@ const Home = () => {
                   className="btn-primary text-lg px-8 py-4 flex items-center justify-center gap-2 group"
                 >
                   <Package className="h-5 w-5" />
-                  Track Your Package
+                  {t('common.trackPackage')}
                   <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
                 </button>
                 <Link
                   to="/services"
                   className="btn-secondary bg-white text-primary-600 hover:bg-gray-100 text-lg px-8 py-4 flex items-center justify-center gap-2"
                 >
-                  Our Services
+                  {t('nav.services')}
                 </Link>
                 <Link
                   to="/booking"
                   className="btn-primary text-lg px-8 py-4 flex items-center justify-center gap-2 group"
                 >
                   <Truck className="h-5 w-5" />
-                  Book Shipment
+                  {t('common.bookShipment')}
                   <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
                 </Link>
               </div>
@@ -183,10 +185,10 @@ const Home = () => {
             className="text-center mb-16"
           >
             <motion.h2 variants={itemVariants} className="section-title">
-              Why Choose CargoNova?
+              {t('services.title')}
             </motion.h2>
             <motion.p variants={itemVariants} className="section-subtitle max-w-2xl mx-auto">
-              We provide exceptional logistics services backed by cutting-edge technology and a dedicated team.
+              {t('services.subtitle')}
             </motion.p>
           </motion.div>
 

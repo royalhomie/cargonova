@@ -7,6 +7,7 @@ import { Mail, Phone, MapPin, Send, CheckCircle } from 'lucide-react';
 import { ContactFormData } from '../types';
 import useSEO from '../hooks/useSEO';
 import NavigationArrows from '../components/NavigationArrows';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const schema = yup.object({
   name: yup.string().required('Name is required').min(2, 'Name must be at least 2 characters'),
@@ -16,6 +17,8 @@ const schema = yup.object({
 }).required();
 
 const Contact = () => {
+  const { t } = useLanguage();
+  
   useSEO({
     title: 'Contact Us - Get Logistics Support & Quotes | CargoNova',
     description: 'Contact CargoNova for logistics inquiries, shipping quotes, and customer support. Available 24/7 via email, phone, or visit our office. Get personalized logistics solutions for your business.',
@@ -65,20 +68,20 @@ const Contact = () => {
   const contactInfo = [
     {
       icon: Mail,
-      title: 'Email Us',
-      content: 'info@cargonova.com',
+      title: t('contact.emailTitle'),
+      content: t('contact.emailContent'),
       link: 'mailto:info@cargonova.com',
     },
     {
       icon: Phone,
-      title: 'Call Us',
-      content: '+1(681) 5286780',
+      title: t('contact.phoneTitle'),
+      content: t('contact.phoneContent'),
       link: 'tel:+16815286780',
     },
     {
       icon: MapPin,
-      title: 'Visit Us',
-      content: '123 Logistics Ave, New York, NY 10001',
+      title: t('contact.addressTitle'),
+      content: t('contact.addressContent'),
       link: 'https://maps.google.com',
     },
   ];
@@ -104,10 +107,10 @@ const Contact = () => {
             className="text-center max-w-3xl mx-auto"
           >
             <h1 className="text-4xl md:text-5xl font-bold mb-4">
-              Get in Touch
+              {t('contact.title')}
             </h1>
             <p className="text-xl text-blue-100">
-              Have questions? We'd love to hear from you. Send us a message and we'll respond as soon as possible.
+              {t('contact.subtitle')}
             </p>
           </motion.div>
         </div>
@@ -166,7 +169,7 @@ const Contact = () => {
             className="card"
           >
             <h2 className="text-3xl font-bold mb-6 text-gray-900 dark:text-white">
-              Send us a Message
+              {t('contact.formTitle')}
             </h2>
             
             {isSubmitted && (
@@ -176,21 +179,21 @@ const Contact = () => {
                 className="mb-6 p-4 bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300 rounded-lg flex items-center gap-3"
               >
                 <CheckCircle className="h-5 w-5" />
-                <span>Thank you! Your message has been sent successfully.</span>
+                <span>{t('contact.successMessage')}</span>
               </motion.div>
             )}
 
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
               <div>
                 <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  Full Name
+                  {t('contact.nameLabel')}
                 </label>
                 <input
                   {...register('name')}
                   id="name"
                   type="text"
                   className="input-field"
-                  placeholder="John Doe"
+                  placeholder={t('contact.namePlaceholder')}
                 />
                 {errors.name && (
                   <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.name.message}</p>
@@ -199,14 +202,14 @@ const Contact = () => {
 
               <div>
                 <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  Email Address
+                  {t('contact.emailLabel')}
                 </label>
                 <input
                   {...register('email')}
                   id="email"
                   type="email"
                   className="input-field"
-                  placeholder="john@example.com"
+                  placeholder={t('contact.emailPlaceholder')}
                 />
                 {errors.email && (
                   <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.email.message}</p>
@@ -215,14 +218,14 @@ const Contact = () => {
 
               <div>
                 <label htmlFor="subject" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  Subject
+                  {t('contact.subjectLabel')}
                 </label>
                 <input
                   {...register('subject')}
                   id="subject"
                   type="text"
                   className="input-field"
-                  placeholder="How can we help?"
+                  placeholder={t('contact.subjectPlaceholder')}
                 />
                 {errors.subject && (
                   <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.subject.message}</p>
@@ -231,14 +234,14 @@ const Contact = () => {
 
               <div>
                 <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  Message
+                  {t('contact.messageLabel')}
                 </label>
                 <textarea
                   {...register('message')}
                   id="message"
                   rows={6}
                   className="input-field resize-none"
-                  placeholder="Tell us more about your inquiry..."
+                  placeholder={t('contact.messagePlaceholder')}
                 />
                 {errors.message && (
                   <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.message.message}</p>
@@ -251,11 +254,11 @@ const Contact = () => {
                 className="btn-primary w-full flex items-center justify-center gap-2"
               >
                 {isSubmitting ? (
-                  'Sending...'
+                  t('contact.sending')
                 ) : (
                   <>
                     <Send className="h-5 w-5" />
-                    Send Message
+                    {t('contact.sendMessage')}
                   </>
                 )}
               </button>

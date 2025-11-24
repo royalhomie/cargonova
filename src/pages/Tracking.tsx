@@ -5,8 +5,11 @@ import { getTrackingData, validateTrackingNumber } from '../utils/helpers';
 import { TrackingData } from '../types';
 import useSEO from '../hooks/useSEO';
 import NavigationArrows from '../components/NavigationArrows';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const Tracking = () => {
+  const { t } = useLanguage();
+  
   useSEO({
     title: 'Track Your Package - Real-Time Shipment Tracking | CargoNova Logistics',
     description: 'Track your packages in real-time with CargoNova. Get instant updates on shipment status, current location, and estimated delivery time. Enter your tracking number for live tracking information.',
@@ -92,9 +95,9 @@ const Tracking = () => {
           <div className="text-center text-white">
             <Package className="h-16 w-16 mx-auto mb-4" />
             <h1 className="text-4xl md:text-5xl font-bold mb-2">
-              Track Your Package
+              {t('tracking.title')}
             </h1>
-            <p className="text-xl">Real-time updates on your shipment status</p>
+            <p className="text-xl">{t('tracking.subtitle')}</p>
           </div>
         </div>
       </div>
@@ -113,7 +116,7 @@ const Tracking = () => {
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
                 <label htmlFor="tracking-number" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  Tracking Number
+                  {t('tracking.title')}
                 </label>
                 <div className="flex gap-4">
                   <input
@@ -121,7 +124,7 @@ const Tracking = () => {
                     type="text"
                     value={trackingNumber}
                     onChange={(e) => setTrackingNumber(e.target.value)}
-                    placeholder="Enter tracking number (e.g., ABC123456789)"
+                    placeholder={t('tracking.placeholder')}
                     className="input-field flex-1"
                     disabled={isLoading}
                   />
@@ -133,12 +136,12 @@ const Tracking = () => {
                     {isLoading ? (
                       <>
                         <Loader className="h-5 w-5 animate-spin" />
-                        Tracking...
+                        {t('tracking.button')}...
                       </>
                     ) : (
                       <>
                         <Search className="h-5 w-5" />
-                        Track
+                        {t('tracking.button')}
                       </>
                     )}
                   </button>

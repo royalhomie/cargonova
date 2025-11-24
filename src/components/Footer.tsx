@@ -1,22 +1,24 @@
 import { Link } from 'react-router-dom';
 import { Truck, Facebook, Twitter, Linkedin, Instagram, Mail, Phone, MapPin } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+  const { t } = useLanguage();
 
   const footerLinks = {
     company: [
-      { name: 'About Us', path: '/about' },
-      { name: 'Services', path: '/services' },
-      { name: 'Careers', path: '/careers' },
-      { name: 'Press', path: '/press' },
+      { name: t('nav.about'), path: '/about' },
+      { name: t('nav.services'), path: '/services' },
+      { name: t('nav.careers'), path: '/careers' },
+      { name: t('nav.press'), path: '/press' },
     ],
     support: [
-      { name: 'Contact Us', path: '/contact' },
-      { name: 'Track Package', path: '/tracking' },
-      { name: 'FAQ', path: '/faq' },
-      { name: 'Terms of Service', path: '/terms' },
-      { name: 'Shipping Tools', path: '/tools' },
+      { name: t('nav.contact'), path: '/contact' },
+      { name: t('nav.tracking'), path: '/tracking' },
+      { name: t('nav.faq'), path: '/faq' },
+      { name: t('nav.terms'), path: '/terms' },
+      { name: t('nav.tools'), path: '/tools' },
     ],
     social: [
       { name: 'Facebook', icon: Facebook, href: 'https://facebook.com' },
@@ -75,7 +77,7 @@ const Footer = () => {
           {/* Company Links */}
           <div>
             <h3 className="text-white font-bold mb-6 text-lg relative inline-block">
-              Company
+              {t('footer.company')}
               <span className="absolute -bottom-2 left-0 w-12 h-1 bg-gradient-to-r from-primary-600 to-purple-600 rounded-full"></span>
             </h3>
             <ul className="space-y-3">
@@ -96,7 +98,7 @@ const Footer = () => {
           {/* Support Links */}
           <div>
             <h3 className="text-white font-bold mb-6 text-lg relative inline-block">
-              Support
+              {t('footer.resources')}
               <span className="absolute -bottom-2 left-0 w-12 h-1 bg-gradient-to-r from-primary-600 to-purple-600 rounded-full"></span>
             </h3>
             <ul className="space-y-3">
@@ -117,17 +119,17 @@ const Footer = () => {
           {/* Newsletter with modern design */}
           <div>
             <h3 className="text-white font-bold mb-6 text-lg relative inline-block">
-              Stay Updated
+              {t('common.getQuote')}
               <span className="absolute -bottom-2 left-0 w-12 h-1 bg-gradient-to-r from-primary-600 to-purple-600 rounded-full"></span>
             </h3>
             <p className="text-sm text-gray-400 mb-6 leading-relaxed">
-              Subscribe to our newsletter for updates and exclusive offers.
+              {t('contact.subtitle')}
             </p>
             <form className="space-y-3" onSubmit={(e) => e.preventDefault()}>
               <div className="relative">
                 <input
                   type="email"
-                  placeholder="Your email"
+                  placeholder={t('tracking.placeholder')}
                   className="w-full px-4 py-3 rounded-xl bg-gray-800/50 border border-gray-700/50 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-300 backdrop-blur-sm"
                 />
               </div>
@@ -135,7 +137,7 @@ const Footer = () => {
                 type="submit"
                 className="w-full px-4 py-3 bg-gradient-to-r from-primary-600 via-purple-600 to-primary-600 text-white rounded-xl hover:shadow-lg hover:shadow-primary-600/50 transition-all duration-300 font-semibold"
               >
-                Subscribe
+                {t('common.getQuote')}
               </button>
             </form>
           </div>
@@ -145,9 +147,11 @@ const Footer = () => {
         <div className="pt-8 border-t border-gray-800/50">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0">
             <p className="text-sm text-gray-400">
-              © {currentYear} <span className="text-white font-semibold">CargoNova Logistics</span>. All rights reserved.
+              {t('footer.copyright')}
             </p>
-            <div className="flex space-x-3">
+            <div>
+              <h4 className="text-white text-sm font-semibold mb-3">{t('footer.followUs')}</h4>
+              <div className="flex space-x-3">
               {footerLinks.social.map((social) => {
                 const Icon = social.icon;
                 return (
@@ -166,6 +170,7 @@ const Footer = () => {
                   </a>
                 );
               })}
+              </div>
             </div>
           </div>
         </div>

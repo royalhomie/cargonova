@@ -5,8 +5,11 @@ import { Check } from 'lucide-react';
 import useSEO from '../hooks/useSEO';
 import { Link } from 'react-router-dom';
 import NavigationArrows from '../components/NavigationArrows';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const Services = () => {
+  const { t } = useLanguage();
+  
   useSEO({
     title: 'Logistics Services - Air Cargo, Ocean Freight, Warehousing | CargoNova',
     description: 'Comprehensive logistics solutions including air cargo, ocean freight, land transport, warehousing, customs brokerage, and supply chain management. Global shipping services tailored to your business needs.',
@@ -57,10 +60,10 @@ const Services = () => {
             className="text-center max-w-3xl mx-auto"
           >
             <h1 className="text-4xl md:text-5xl font-bold mb-4">
-              Our Logistics Services
+              {t('services.title')}
             </h1>
             <p className="text-xl text-blue-100">
-              Comprehensive solutions tailored to meet all your shipping and logistics needs
+              {t('services.subtitle')}
             </p>
           </motion.div>
         </div>
@@ -113,7 +116,7 @@ const Services = () => {
                   
                   <div className="mt-6 pt-6 border-t border-gray-200 dark:border-gray-700">
                     <Link to="/booking" className="btn-primary w-full">
-                      Book Now
+                      {t('common.bookShipment')}
                     </Link>
                   </div>
                 </motion.div>

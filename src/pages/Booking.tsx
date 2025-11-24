@@ -7,8 +7,10 @@ import {
 } from 'lucide-react';
 import useSEO from '../hooks/useSEO';
 import NavigationArrows from '../components/NavigationArrows';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const Booking = () => {
+  const { t } = useLanguage();
   const [currentStep, setCurrentStep] = useState(1);
   const [formData, setFormData] = useState<any>({
     weightUnit: 'kg',
@@ -44,23 +46,23 @@ const Booking = () => {
   const [bookingNumber, setBookingNumber] = useState('');
 
   useSEO({
-    title: 'Book a Shipment - Easy Online Booking | CargoNova',
-    description: 'Book your shipment online in minutes. Get instant quotes, choose service level, and schedule pickup. Fast, secure, and reliable shipping with CargoNova.',
+    title: t('booking.seoTitle'),
+    description: t('booking.seoDescription'),
     keywords: 'book shipment, online booking, shipping quote, freight booking, schedule pickup',
     ogImage: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1200&h=630&fit=crop&q=80',
     canonicalPath: '/booking'
   });
 
   const serviceTypes = [
-    { id: 'express', name: 'Express', icon: Plane, time: '1-2 days', multiplier: 2.5 },
-    { id: 'standard', name: 'Standard', icon: Truck, time: '3-5 days', multiplier: 1.5 },
-    { id: 'economy', name: 'Economy', icon: Ship, time: '7-14 days', multiplier: 1.0 },
+    { id: 'express', name: t('booking.express'), icon: Plane, time: t('booking.expressTime'), multiplier: 2.5 },
+    { id: 'standard', name: t('booking.standard'), icon: Truck, time: t('booking.standardTime'), multiplier: 1.5 },
+    { id: 'economy', name: t('booking.economy'), icon: Ship, time: t('booking.economyTime'), multiplier: 1.0 },
   ];
 
   const shipmentTypes = [
-    { id: 'document', name: 'Document', icon: FileText },
-    { id: 'package', name: 'Package', icon: Package },
-    { id: 'pallet', name: 'Pallet', icon: Package },
+    { id: 'document', name: t('booking.document'), icon: FileText },
+    { id: 'package', name: t('booking.package'), icon: Package },
+    { id: 'pallet', name: t('booking.pallet'), icon: Package },
   ];
 
   const calculateQuote = (data: any) => {
@@ -128,11 +130,11 @@ const Booking = () => {
   };
 
   const steps = [
-    { number: 1, title: 'Service Type', icon: Truck },
-    { number: 2, title: 'Route', icon: MapPin },
-    { number: 3, title: 'Package Details', icon: Package },
-    { number: 4, title: 'Contact Info', icon: User },
-    { number: 5, title: 'Review & Book', icon: CheckCircle },
+    { number: 1, title: t('booking.serviceType'), icon: Truck },
+    { number: 2, title: t('booking.route'), icon: MapPin },
+    { number: 3, title: t('booking.packageDetails'), icon: Package },
+    { number: 4, title: t('booking.contactInfo'), icon: User },
+    { number: 5, title: t('booking.reviewBook'), icon: CheckCircle },
   ];
 
   if (bookingConfirmed) {
@@ -156,16 +158,16 @@ const Booking = () => {
               </motion.div>
               
               <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
-                Booking Confirmed!
+                {t('booking.confirmedTitle')}
               </h1>
               
               <p className="text-gray-600 dark:text-gray-300 mb-8">
-                Your shipment has been successfully booked. We'll send you a confirmation email shortly.
+                {t('booking.confirmedMessage')}
               </p>
               
               <div className="bg-primary-50 dark:bg-primary-900/20 rounded-xl p-6 mb-8">
                 <div className="text-sm text-gray-600 dark:text-gray-400 mb-2">
-                  Booking Number
+                  {t('booking.bookingNumber')}
                 </div>
                 <div className="text-3xl font-bold text-primary-600 dark:text-primary-400 font-mono">
                   {bookingNumber}
@@ -195,10 +197,10 @@ const Booking = () => {
               
               <div className="flex flex-col sm:flex-row gap-4">
                 <a href="/tracking" className="btn-primary flex-1">
-                  Track Shipment
+                  {t('booking.trackShipment')}
                 </a>
                 <a href="/booking" className="btn-secondary flex-1" onClick={() => window.location.reload()}>
-                  New Booking
+                  {t('booking.newBooking')}
                 </a>
               </div>
             </div>
@@ -267,13 +269,13 @@ const Booking = () => {
                 {currentStep === 1 && (
                   <div className="card">
                     <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
-                      Choose Your Service
+                      {t('booking.chooseService')}
                     </h2>
                     
                     <div className="space-y-6">
                       <div>
                         <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
-                          Service Level
+                          {t('booking.serviceLevel')}
                         </label>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                           {serviceTypes.map((service) => {
@@ -313,7 +315,7 @@ const Booking = () => {
 
                       <div>
                         <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
-                          Shipment Type
+                          {t('booking.shipmentType')}
                         </label>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                           {shipmentTypes.map((type) => {
@@ -355,7 +357,7 @@ const Booking = () => {
                 {currentStep === 2 && (
                   <div className="card">
                     <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
-                      Shipping Route
+                      {t('booking.shippingRoute')}
                     </h2>
                     
                     <div className="space-y-8">
@@ -363,43 +365,43 @@ const Booking = () => {
                       <div>
                         <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
                           <MapPin className="h-5 w-5 text-primary-600" />
-                          Origin
+                          {t('booking.origin')}
                         </h3>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                           <div>
                             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                              Country
+                              {t('booking.country')}
                             </label>
                             <input
                               name="originCountry"
                               value={formData.originCountry}
                               onChange={handleInputChange}
                               className="input-field"
-                              placeholder="e.g., United States"
+                              placeholder={t('booking.countryPlaceholder')}
                             />
                           </div>
                           <div>
                             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                              City
+                              {t('booking.city')}
                             </label>
                             <input
                               name="originCity"
                               value={formData.originCity}
                               onChange={handleInputChange}
                               className="input-field"
-                              placeholder="e.g., New York"
+                              placeholder={t('booking.cityPlaceholder')}
                             />
                           </div>
                           <div>
                             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                              ZIP Code
+                              {t('booking.zipCode')}
                             </label>
                             <input
                               name="originZip"
                               value={formData.originZip}
                               onChange={handleInputChange}
                               className="input-field"
-                              placeholder="e.g., 10001"
+                              placeholder={t('booking.zipPlaceholder')}
                             />
                           </div>
                         </div>
@@ -409,43 +411,43 @@ const Booking = () => {
                       <div>
                         <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
                           <MapPin className="h-5 w-5 text-green-600" />
-                          Destination
+                          {t('booking.destination')}
                         </h3>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                           <div>
                             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                              Country
+                              {t('booking.country')}
                             </label>
                             <input
                               name="destCountry"
                               value={formData.destCountry}
                               onChange={handleInputChange}
                               className="input-field"
-                              placeholder="e.g., United Kingdom"
+                              placeholder={t('booking.countryPlaceholder')}
                             />
                           </div>
                           <div>
                             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                              City
+                              {t('booking.city')}
                             </label>
                             <input
                               name="destCity"
                               value={formData.destCity}
                               onChange={handleInputChange}
                               className="input-field"
-                              placeholder="e.g., London"
+                              placeholder={t('booking.cityPlaceholder')}
                             />
                           </div>
                           <div>
                             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                              ZIP Code
+                              {t('booking.zipCode')}
                             </label>
                             <input
                               name="destZip"
                               value={formData.destZip}
                               onChange={handleInputChange}
                               className="input-field"
-                              placeholder="e.g., SW1A 1AA"
+                              placeholder={t('booking.zipPlaceholder')}
                             />
                           </div>
                         </div>
@@ -458,14 +460,14 @@ const Booking = () => {
                 {currentStep === 3 && (
                   <div className="card">
                     <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
-                      Package Details
+                      {t('booking.packageDetails')}
                     </h2>
                     
                     <div className="space-y-6">
                       {/* Weight */}
                       <div>
                         <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                          Weight
+                          {t('booking.weight')}
                         </label>
                         <div className="grid grid-cols-2 gap-4">
                           <input
@@ -475,7 +477,7 @@ const Booking = () => {
                             value={formData.weight}
                             onChange={handleInputChange}
                             className="input-field"
-                            placeholder="Enter weight"
+                            placeholder={t('booking.weightPlaceholder')}
                           />
                           <select 
                             name="weightUnit" 
@@ -483,8 +485,8 @@ const Booking = () => {
                             onChange={handleInputChange}
                             className="input-field"
                           >
-                            <option value="kg">Kilograms (kg)</option>
-                            <option value="lbs">Pounds (lbs)</option>
+                            <option value="kg">{t('booking.kilograms')}</option>
+                            <option value="lbs">{t('booking.pounds')}</option>
                           </select>
                         </div>
                       </div>
@@ -492,7 +494,7 @@ const Booking = () => {
                       {/* Dimensions */}
                       <div>
                         <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                          Dimensions
+                          {t('booking.dimensions')}
                         </label>
                         <div className="grid grid-cols-4 gap-4">
                           <input
@@ -502,7 +504,7 @@ const Booking = () => {
                             value={formData.length}
                             onChange={handleInputChange}
                             className="input-field"
-                            placeholder="Length"
+                            placeholder={t('booking.length')}
                           />
                           <input
                             type="number"
@@ -511,7 +513,7 @@ const Booking = () => {
                             value={formData.width}
                             onChange={handleInputChange}
                             className="input-field"
-                            placeholder="Width"
+                            placeholder={t('booking.width')}
                           />
                           <input
                             type="number"
@@ -520,7 +522,7 @@ const Booking = () => {
                             value={formData.height}
                             onChange={handleInputChange}
                             className="input-field"
-                            placeholder="Height"
+                            placeholder={t('booking.height')}
                           />
                           <select 
                             name="dimensionUnit" 
@@ -529,7 +531,7 @@ const Booking = () => {
                             className="input-field"
                           >
                             <option value="cm">cm</option>
-                            <option value="in">inches</option>
+                            <option value="in">{t('booking.inches')}</option>
                           </select>
                         </div>
                       </div>
@@ -537,7 +539,7 @@ const Booking = () => {
                       {/* Description */}
                       <div>
                         <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                          Package Description
+                          {t('booking.packageDescription')}
                         </label>
                         <textarea
                           name="packageDescription"
@@ -545,14 +547,14 @@ const Booking = () => {
                           onChange={handleInputChange}
                           rows={3}
                           className="input-field"
-                          placeholder="Describe the contents of your package"
+                          placeholder={t('booking.descriptionPlaceholder')}
                         />
                       </div>
 
                       {/* Value */}
                       <div>
                         <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                          Declared Value (USD)
+                          {t('booking.declaredValue')}
                         </label>
                         <input
                           type="number"
@@ -561,7 +563,7 @@ const Booking = () => {
                           value={formData.packageValue}
                           onChange={handleInputChange}
                           className="input-field"
-                          placeholder="Enter package value"
+                          placeholder={t('booking.valuePlaceholder')}
                         />
                       </div>
 
@@ -576,7 +578,7 @@ const Booking = () => {
                           className="w-4 h-4 text-primary-600 bg-gray-100 border-gray-300 rounded focus:ring-primary-500"
                         />
                         <label htmlFor="insurance" className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                          Add insurance (2% of declared value)
+                          {t('booking.addInsurance')}
                         </label>
                       </div>
                     </div>
@@ -587,7 +589,7 @@ const Booking = () => {
                 {currentStep === 4 && (
                   <div className="card">
                     <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
-                      Contact Information
+                      {t('booking.contactInformation')}
                     </h2>
                     
                     <div className="space-y-8">
@@ -595,24 +597,24 @@ const Booking = () => {
                       <div>
                         <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
                           <User className="h-5 w-5 text-primary-600" />
-                          Sender Details
+                          {t('booking.senderDetails')}
                         </h3>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                           <div>
                             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                              Full Name
+                              {t('booking.fullName')}
                             </label>
                             <input 
                               name="senderName" 
                               value={formData.senderName}
                               onChange={handleInputChange}
                               className="input-field" 
-                              placeholder="John Doe" 
+                              placeholder={t('booking.namePlaceholder')}
                             />
                           </div>
                           <div>
                             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                              Email
+                              {t('booking.email')}
                             </label>
                             <input 
                               name="senderEmail" 
@@ -620,12 +622,12 @@ const Booking = () => {
                               value={formData.senderEmail}
                               onChange={handleInputChange}
                               className="input-field" 
-                              placeholder="john@example.com" 
+                              placeholder={t('booking.emailPlaceholder')}
                             />
                           </div>
                           <div>
                             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                              Phone
+                              {t('booking.phone')}
                             </label>
                             <input 
                               name="senderPhone" 
@@ -633,19 +635,19 @@ const Booking = () => {
                               value={formData.senderPhone}
                               onChange={handleInputChange}
                               className="input-field" 
-                              placeholder="+1 234 567 890" 
+                              placeholder={t('booking.phonePlaceholder')}
                             />
                           </div>
                           <div>
                             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                              Address
+                              {t('booking.address')}
                             </label>
                             <input 
                               name="senderAddress" 
                               value={formData.senderAddress}
                               onChange={handleInputChange}
                               className="input-field" 
-                              placeholder="123 Main St" 
+                              placeholder={t('booking.addressPlaceholder')}
                             />
                           </div>
                         </div>
@@ -655,24 +657,24 @@ const Booking = () => {
                       <div>
                         <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
                           <User className="h-5 w-5 text-green-600" />
-                          Receiver Details
+                          {t('booking.receiverDetails')}
                         </h3>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                           <div>
                             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                              Full Name
+                              {t('booking.fullName')}
                             </label>
                             <input 
                               name="receiverName" 
                               value={formData.receiverName}
                               onChange={handleInputChange}
                               className="input-field" 
-                              placeholder="Jane Smith" 
+                              placeholder={t('booking.namePlaceholder')}
                             />
                           </div>
                           <div>
                             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                              Email
+                              {t('booking.email')}
                             </label>
                             <input 
                               name="receiverEmail" 
@@ -680,12 +682,12 @@ const Booking = () => {
                               value={formData.receiverEmail}
                               onChange={handleInputChange}
                               className="input-field" 
-                              placeholder="jane@example.com" 
+                              placeholder={t('booking.emailPlaceholder')}
                             />
                           </div>
                           <div>
                             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                              Phone
+                              {t('booking.phone')}
                             </label>
                             <input 
                               name="receiverPhone" 
@@ -693,19 +695,19 @@ const Booking = () => {
                               value={formData.receiverPhone}
                               onChange={handleInputChange}
                               className="input-field" 
-                              placeholder="+1 234 567 890" 
+                              placeholder={t('booking.phonePlaceholder')}
                             />
                           </div>
                           <div>
                             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                              Address
+                              {t('booking.address')}
                             </label>
                             <input 
                               name="receiverAddress" 
                               value={formData.receiverAddress}
                               onChange={handleInputChange}
                               className="input-field" 
-                              placeholder="456 Park Ave" 
+                              placeholder={t('booking.addressPlaceholder')}
                             />
                           </div>
                         </div>
@@ -718,54 +720,54 @@ const Booking = () => {
                 {currentStep === 5 && (
                   <div className="card">
                     <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
-                      Review Your Booking
+                      {t('booking.reviewYourBooking')}
                     </h2>
                     
                     <div className="space-y-6">
                       {/* Booking Summary */}
                       <div className="bg-gray-50 dark:bg-gray-800 rounded-xl p-6">
                         <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
-                          Booking Summary
+                          {t('booking.bookingSummary')}
                         </h3>
                         
                         <div className="space-y-4">
                           <div className="flex justify-between items-center pb-2 border-b border-gray-200 dark:border-gray-700">
-                            <span className="text-gray-600 dark:text-gray-400">Service Type</span>
+                            <span className="text-gray-600 dark:text-gray-400">{t('booking.serviceType')}</span>
                             <span className="font-medium text-gray-900 dark:text-white capitalize">
                               {formData.serviceType}
                             </span>
                           </div>
                           
                           <div className="flex justify-between items-center pb-2 border-b border-gray-200 dark:border-gray-700">
-                            <span className="text-gray-600 dark:text-gray-400">Shipment Type</span>
+                            <span className="text-gray-600 dark:text-gray-400">{t('booking.shipmentType')}</span>
                             <span className="font-medium text-gray-900 dark:text-white capitalize">
                               {formData.shipmentType}
                             </span>
                           </div>
                           
                           <div className="flex justify-between items-center pb-2 border-b border-gray-200 dark:border-gray-700">
-                            <span className="text-gray-600 dark:text-gray-400">Route</span>
+                            <span className="text-gray-600 dark:text-gray-400">{t('booking.route')}</span>
                             <span className="font-medium text-gray-900 dark:text-white">
                               {formData.originCity} → {formData.destCity}
                             </span>
                           </div>
                           
                           <div className="flex justify-between items-center pb-2 border-b border-gray-200 dark:border-gray-700">
-                            <span className="text-gray-600 dark:text-gray-400">Weight</span>
+                            <span className="text-gray-600 dark:text-gray-400">{t('booking.weight')}</span>
                             <span className="font-medium text-gray-900 dark:text-white">
                               {formData.weight} {formData.weightUnit}
                             </span>
                           </div>
                           
                           <div className="flex justify-between items-center pb-2 border-b border-gray-200 dark:border-gray-700">
-                            <span className="text-gray-600 dark:text-gray-400">Dimensions</span>
+                            <span className="text-gray-600 dark:text-gray-400">{t('booking.dimensions')}</span>
                             <span className="font-medium text-gray-900 dark:text-white">
                               {formData.length} × {formData.width} × {formData.height} {formData.dimensionUnit}
                             </span>
                           </div>
                           
                           <div className="flex justify-between items-center pb-2 border-b border-gray-200 dark:border-gray-700">
-                            <span className="text-gray-600 dark:text-gray-400">Package Value</span>
+                            <span className="text-gray-600 dark:text-gray-400">{t('booking.packageValue')}</span>
                             <span className="font-medium text-gray-900 dark:text-white">
                               ${formData.packageValue}
                             </span>
@@ -773,7 +775,7 @@ const Booking = () => {
                           
                           {formData.requiresInsurance && (
                             <div className="flex justify-between items-center pb-2 border-b border-gray-200 dark:border-gray-700">
-                              <span className="text-gray-600 dark:text-gray-400">Insurance</span>
+                              <span className="text-gray-600 dark:text-gray-400">{t('booking.insurance')}</span>
                               <span className="font-medium text-gray-900 dark:text-white">
                                 ${(parseFloat(formData.packageValue) || 0) * 0.02}
                               </span>
@@ -781,7 +783,7 @@ const Booking = () => {
                           )}
                           
                           <div className="flex justify-between items-center pt-4">
-                            <span className="text-lg font-bold text-gray-900 dark:text-white">Total Cost</span>
+                            <span className="text-lg font-bold text-gray-900 dark:text-white">{t('booking.totalCost')}</span>
                             <span className="text-2xl font-bold text-primary-600 dark:text-primary-400">
                               ${quote?.toFixed(2)}
                             </span>
@@ -792,7 +794,7 @@ const Booking = () => {
                       {/* Pickup Date */}
                       <div>
                         <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                          Preferred Pickup Date
+                          {t('booking.preferredPickupDate')}
                         </label>
                         <div className="relative">
                           <input
@@ -810,7 +812,7 @@ const Booking = () => {
                       {/* Special Instructions */}
                       <div>
                         <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                          Special Instructions (Optional)
+                          {t('booking.specialInstructions')}
                         </label>
                         <textarea
                           name="specialInstructions"
@@ -818,7 +820,7 @@ const Booking = () => {
                           onChange={handleInputChange}
                           rows={3}
                           className="input-field"
-                          placeholder="Any special handling requirements or delivery instructions"
+                          placeholder={t('booking.instructionsPlaceholder')}
                         />
                       </div>
                       
@@ -831,7 +833,7 @@ const Booking = () => {
                           className="mt-1 w-4 h-4 text-primary-600 bg-gray-100 border-gray-300 rounded focus:ring-primary-500"
                         />
                         <label htmlFor="terms" className="text-sm text-gray-700 dark:text-gray-300">
-                          I agree to the <a href="/terms" className="text-primary-600 hover:underline">Terms of Service</a> and acknowledge that I have read the <a href="/privacy" className="text-primary-600 hover:underline">Privacy Policy</a>.
+                          {t('booking.agreeToTerms')} <a href="/terms" className="text-primary-600 hover:underline">{t('booking.termsOfService')}</a> {t('booking.and')} <a href="/privacy" className="text-primary-600 hover:underline">{t('booking.privacyPolicy')}</a>.
                         </label>
                       </div>
                     </div>
@@ -853,7 +855,7 @@ const Booking = () => {
                 }`}
               >
                 <ArrowLeft className="h-5 w-5" />
-                Previous
+                {t('booking.previous')}
               </button>
               
               {currentStep < 5 ? (
@@ -861,7 +863,7 @@ const Booking = () => {
                   type="submit"
                   className="flex items-center gap-2 px-6 py-3 bg-primary-600 text-white rounded-lg font-medium hover:bg-primary-700 transition-colors"
                 >
-                  Next
+                  {t('booking.next')}
                   <ArrowRight className="h-5 w-5" />
                 </button>
               ) : (
@@ -869,7 +871,7 @@ const Booking = () => {
                   type="submit"
                   className="flex items-center gap-2 px-6 py-3 bg-green-600 text-white rounded-lg font-medium hover:bg-green-700 transition-colors"
                 >
-                  Confirm Booking
+                  {t('booking.confirmBooking')}
                   <CheckCircle className="h-5 w-5" />
                 </button>
               )}

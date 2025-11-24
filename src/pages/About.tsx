@@ -3,8 +3,11 @@ import { teamMembers } from '../data/mockData';
 import { Target, Eye, Heart, Award } from 'lucide-react';
 import useSEO from '../hooks/useSEO';
 import NavigationArrows from '../components/NavigationArrows';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const About = () => {
+  const { t } = useLanguage();
+  
   useSEO({
     title: 'About CargoNova - Leading Logistics Company Since 2013 | Our Story',
     description: 'Learn about CargoNova Logistics - a global logistics leader serving 200+ countries since 2013. Discover our mission, values, and commitment to sustainable, innovative freight solutions.',
@@ -15,23 +18,23 @@ const About = () => {
   const values = [
     {
       icon: Target,
-      title: 'Our Mission',
-      description: 'To provide innovative logistics solutions that empower businesses to reach their full potential through reliable, efficient, and sustainable delivery services.',
+      title: t('about.mission'),
+      description: t('about.missionDescription'),
     },
     {
       icon: Eye,
-      title: 'Our Vision',
-      description: 'To be the global leader in logistics excellence, setting industry standards for innovation, sustainability, and customer satisfaction.',
+      title: t('about.vision'),
+      description: t('about.visionDescription'),
     },
     {
       icon: Heart,
-      title: 'Our Values',
-      description: 'Integrity, innovation, and customer-centricity guide everything we do. We believe in building lasting relationships through trust and exceptional service.',
+      title: t('about.values'),
+      description: t('about.valuesDescription'),
     },
     {
       icon: Award,
-      title: 'Our Commitment',
-      description: 'Committed to excellence in every delivery, we continuously invest in technology and our people to exceed customer expectations.',
+      title: t('about.commitment'),
+      description: t('about.commitmentDescription'),
     },
   ];
 
@@ -77,10 +80,10 @@ const About = () => {
             className="text-center max-w-3xl mx-auto"
           >
             <h1 className="text-4xl md:text-5xl font-bold mb-4">
-              About CargoNova
+              {t('about.title')}
             </h1>
             <p className="text-xl text-blue-100">
-              Delivering excellence in logistics for over a decade
+              {t('about.subtitle')}
             </p>
           </motion.div>
         </div>
@@ -97,7 +100,7 @@ const About = () => {
               transition={{ duration: 0.6 }}
               className="text-center mb-12"
             >
-              <h2 className="section-title">Our Story</h2>
+              <h2 className="section-title">{t('about.title')}</h2>
               <div className="space-y-6 text-lg text-gray-600 dark:text-gray-300 text-left">
                 <p>
                   Founded in 2013, CargoNova has grown from a small local courier service to a global logistics powerhouse. 
@@ -126,9 +129,9 @@ const About = () => {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="section-title">Our Mission & Values</h2>
+            <h2 className="section-title">{t('about.title')}</h2>
             <p className="section-subtitle max-w-2xl mx-auto">
-              Guiding principles that drive our commitment to excellence
+              {t('about.subtitle')}
             </p>
           </motion.div>
 
@@ -190,9 +193,9 @@ const About = () => {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="section-title">Meet Our Team</h2>
+            <h2 className="section-title">{t('about.team')}</h2>
             <p className="section-subtitle max-w-2xl mx-auto">
-              Passionate professionals dedicated to delivering excellence
+              {t('about.teamDescription')}
             </p>
           </motion.div>
 
@@ -244,10 +247,10 @@ const About = () => {
             className="grid grid-cols-2 lg:grid-cols-4 gap-8"
           >
             {[
-              { value: '10+', label: 'Years of Excellence' },
-              { value: '50K+', label: 'Happy Clients' },
-              { value: '200+', label: 'Countries Served' },
-              { value: '500K+', label: 'Deliveries Made' },
+              { value: t('about.years'), label: t('about.yearsLabel') },
+              { value: t('about.clients'), label: t('about.clientsLabel') },
+              { value: t('about.countries'), label: t('about.countriesLabel') },
+              { value: t('about.deliveries'), label: t('about.deliveriesLabel') },
             ].map((stat, index) => (
               <motion.div
                 key={index}
