@@ -3,7 +3,6 @@ import { Truck, Facebook, Twitter, Linkedin, Instagram, Mail, Phone, MapPin } fr
 import { useLanguage } from '../contexts/LanguageContext';
 
 const Footer = () => {
-  const currentYear = new Date().getFullYear();
   const { t } = useLanguage();
 
   const footerLinks = {
@@ -147,7 +146,7 @@ const Footer = () => {
         <div className="pt-8 border-t border-gray-800/50">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0">
             <p className="text-sm text-gray-400">
-              {t('footer.copyright')}
+              © {new Date().getFullYear()} CargoNova Logistics. All rights reserved.
             </p>
             <div>
               <h4 className="text-white text-sm font-semibold mb-3">{t('footer.followUs')}</h4>
