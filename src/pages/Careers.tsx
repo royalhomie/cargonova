@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Briefcase, MapPin, Clock, DollarSign, Users, TrendingUp, Heart, Award } from 'lucide-react';
+import { Briefcase, MapPin, Clock, DollarSign, TrendingUp, Heart } from 'lucide-react';
 import useSEO from '../hooks/useSEO';
 import NavigationArrows from '../components/NavigationArrows';
 import { useLanguage } from '../contexts/LanguageContext';

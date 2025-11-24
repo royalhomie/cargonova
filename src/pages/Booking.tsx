@@ -1,9 +1,9 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
 import { 
-  Package, MapPin, Weight, Ruler, DollarSign, Calendar, 
+  Package, MapPin, Calendar, 
   Truck, Ship, Plane, CheckCircle, ArrowRight, ArrowLeft,
-  User, Phone, Mail, Home, AlertCircle, FileText
+  User, FileText
 } from 'lucide-react';
 import useSEO from '../hooks/useSEO';
 import NavigationArrows from '../components/NavigationArrows';
