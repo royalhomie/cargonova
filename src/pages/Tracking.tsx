@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Search, Package, MapPin, Clock, CheckCircle, AlertCircle, Loader, Truck, Plane, Anchor, Home, Globe } from 'lucide-react';
 import { getTrackingData, validateTrackingNumber } from '../utils/helpers';
