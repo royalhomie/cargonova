@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Search, Package, MapPin, Clock, CheckCircle, AlertCircle, Loader } from 'lucide-react';
+import { Search, Package, MapPin, Clock, CheckCircle, AlertCircle, Loader, Truck, Plane, Anchor, Home, Globe } from 'lucide-react';
 import { getTrackingData, validateTrackingNumber } from '../utils/helpers';
 import { TrackingData } from '../types';
 import useSEO from '../hooks/useSEO';
@@ -44,6 +44,8 @@ const Tracking = () => {
       const data = getTrackingData(trackingNumber.toUpperCase());
       if (data) {
         setTrackingData(data);
+        // Clear the tracking number input after successful search
+        setTrackingNumber('');
       } else {
         setError('Tracking number not found. Please check and try again.');
       }
@@ -80,13 +82,28 @@ const Tracking = () => {
     }
   };
 
+  const getEventIcon = (status: string) => {
+    switch (status.toLowerCase()) {
+      case 'package received':
+        return <Package className="h-4 w-4 text-primary-600" />;
+      case 'in transit':
+        return <Truck className="h-4 w-4 text-blue-600" />;
+      case 'out for delivery':
+        return <Truck className="h-4 w-4 text-orange-600" />;
+      case 'delivered':
+        return <CheckCircle className="h-4 w-4 text-green-600" />;
+      default:
+        return <Clock className="h-4 w-4 text-gray-600" />;
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-20">
       <NavigationArrows />
       {/* Hero Image Section */}
       <div className="relative h-64 mb-12 overflow-hidden">
         <img
-          src="https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?w=1920&h=600&fit=crop&q=80"
+          src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=1920&h=600&fit=crop&q=80"
           alt="Package delivery"
           className="w-full h-full object-cover"
         />
@@ -173,10 +190,12 @@ const Tracking = () => {
               >
                 {/* Status Card */}
                 <div className="card">
-                  <div className="flex items-start gap-4 mb-6">
-                    {getStatusIcon(trackingData.status)}
+                  <div className="flex flex-col md:flex-row md:items-start gap-6 mb-6">
+                    <div className="flex-shrink-0">
+                      {getStatusIcon(trackingData.status)}
+                    </div>
                     <div className="flex-1">
-                      <div className="flex items-center gap-3 mb-2">
+                      <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
                         <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
                           {trackingData.trackingNumber}
                         </h2>
@@ -184,52 +203,194 @@ const Tracking = () => {
                           {trackingData.status}
                         </span>
                       </div>
-                      <div className="space-y-2 text-gray-600 dark:text-gray-300">
-                        <div className="flex items-center gap-2">
-                          <MapPin className="h-4 w-4" />
-                          <span>{trackingData.currentLocation}</span>
+                      
+                      {/* Interactive Map Visualization */}
+                      <div className="mb-8 bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-gray-800 dark:to-gray-900 rounded-xl p-6 border border-blue-100 dark:border-gray-700">
+                        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Shipment Route</h3>
+                        <div className="relative h-32 flex items-center justify-between">
+                          {/* Route Line */}
+                          <div className="absolute left-8 right-8 top-1/2 h-1 bg-gradient-to-r from-red-500 via-yellow-500 to-green-500 -translate-y-1/2"></div>
+                          
+                          {/* Origin */}
+                          <div className="relative z-10 flex flex-col items-center">
+                            <div className="w-6 h-6 rounded-full bg-red-500 flex items-center justify-center mb-2">
+                              <Globe className="h-3 w-3 text-white" />
+                            </div>
+                            <span className="text-xs font-medium text-gray-700 dark:text-gray-300 text-center">Sanaa, YE</span>
+                          </div>
+                          
+                          {/* Transit Points */}
+                          <div className="relative z-10 flex flex-col items-center">
+                            <div className="w-6 h-6 rounded-full bg-yellow-500 flex items-center justify-center mb-2">
+                              <Plane className="h-3 w-3 text-white" />
+                            </div>
+                            <span className="text-xs font-medium text-gray-700 dark:text-gray-300 text-center">Dubai, UAE</span>
+                          </div>
+                          
+                          <div className="relative z-10 flex flex-col items-center">
+                            <div className="w-6 h-6 rounded-full bg-blue-500 flex items-center justify-center mb-2">
+                              <Anchor className="h-3 w-3 text-white" />
+                            </div>
+                            <span className="text-xs font-medium text-gray-700 dark:text-gray-300 text-center">Miami, FL</span>
+                          </div>
+                          
+                          {/* Destination */}
+                          <div className="relative z-10 flex flex-col items-center">
+                            <div className="w-6 h-6 rounded-full bg-green-500 flex items-center justify-center mb-2">
+                              <Home className="h-3 w-3 text-white" />
+                            </div>
+                            <span className="text-xs font-medium text-gray-700 dark:text-gray-300 text-center">San Jose, CR</span>
+                          </div>
                         </div>
-                        <div className="flex items-center gap-2">
-                          <Clock className="h-4 w-4" />
-                          <span>Estimated Delivery: {trackingData.estimatedDelivery}</span>
+                      </div>
+                      
+                      {/* Animated Progress Indicator */}
+                      <div className="mb-8">
+                        <div className="flex justify-between mb-3">
+                          <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Shipment Progress</span>
+                          <span className="text-sm font-medium text-primary-600 dark:text-primary-400">
+                            {trackingData.status === 'Delivered' ? '100%' : trackingData.status === 'Out for Delivery' ? '85%' : trackingData.status === 'In Transit' ? '65%' : '25%'}
+                          </span>
+                        </div>
+                        <div className="relative w-full bg-gray-200 dark:bg-gray-700 rounded-full h-3 overflow-hidden">
+                          <motion.div 
+                            className="absolute top-0 left-0 h-full bg-gradient-to-r from-primary-500 to-primary-600 rounded-full" 
+                            initial={{ width: '0%' }}
+                            animate={{ 
+                              width: trackingData.status === 'Delivered' ? '100%' : 
+                                     trackingData.status === 'Out for Delivery' ? '85%' : 
+                                     trackingData.status === 'In Transit' ? '65%' : '25%' 
+                            }}
+                            transition={{ duration: 1.5, ease: "easeInOut" }}
+                          >
+                            <div className="absolute inset-0 bg-white opacity-30 animate-pulse"></div>
+                          </motion.div>
+                        </div>
+                        <div className="flex justify-between mt-2 text-xs text-gray-500 dark:text-gray-400">
+                          <span>Origin</span>
+                          <span>Destination</span>
+                        </div>
+                      </div>
+                      
+                      {/* Package Details */}
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                        <div className="bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-lg p-4 border border-gray-200 dark:border-gray-700 shadow-sm">
+                          <h3 className="font-semibold text-gray-900 dark:text-white mb-2 flex items-center gap-2">
+                            <Truck className="h-4 w-4 text-primary-600" />
+                            Sender Information
+                          </h3>
+                          <p className="text-gray-600 dark:text-gray-300 font-medium">Garth Davis</p>
+                          <p className="text-gray-600 dark:text-gray-300">Sanaa, Yemen</p>
+                        </div>
+                        <div className="bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-lg p-4 border border-gray-200 dark:border-gray-700 shadow-sm">
+                          <h3 className="font-semibold text-gray-900 dark:text-white mb-2 flex items-center gap-2">
+                            <Home className="h-4 w-4 text-primary-600" />
+                            Receiver Information
+                          </h3>
+                          <p className="text-gray-600 dark:text-gray-300 font-medium">Cecilia Leon Jimenez</p>
+                          <p className="text-gray-600 dark:text-gray-300">Puntarenas, San Jose, Costa Rica</p>
+                        </div>
+                        <div className="bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-lg p-4 border border-gray-200 dark:border-gray-700 shadow-sm">
+                          <h3 className="font-semibold text-gray-900 dark:text-white mb-2 flex items-center gap-2">
+                            <Package className="h-4 w-4 text-primary-600" />
+                            Package Details
+                          </h3>
+                          <p className="text-gray-600 dark:text-gray-300">Weight: 10kg</p>
+                          <p className="text-gray-600 dark:text-gray-300">Contents: Clothing</p>
+                          <p className="text-gray-600 dark:text-gray-300">Courier: X Logistics</p>
+                        </div>
+                        <div className="bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-lg p-4 border border-gray-200 dark:border-gray-700 shadow-sm">
+                          <h3 className="font-semibold text-gray-900 dark:text-white mb-2 flex items-center gap-2">
+                            <Clock className="h-4 w-4 text-primary-600" />
+                            Shipment Timeline
+                          </h3>
+                          <p className="text-gray-600 dark:text-gray-300">Sent: November 25, 2025</p>
+                          <p className="text-gray-600 dark:text-gray-300">Estimated Delivery: {trackingData.estimatedDelivery}</p>
+                        </div>
+                      </div>
+                      
+                      <div className="space-y-3">
+                        <div className="flex items-center gap-3 p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
+                          <MapPin className="h-5 w-5 text-blue-600 dark:text-blue-400 flex-shrink-0" />
+                          <div>
+                            <p className="font-medium text-gray-900 dark:text-white">Current Location</p>
+                            <p className="text-gray-600 dark:text-gray-300">{trackingData.currentLocation}</p>
+                          </div>
+                        </div>
+                        <div className="flex items-center gap-3 p-3 bg-green-50 dark:bg-green-900/20 rounded-lg">
+                          <Clock className="h-5 w-5 text-green-600 dark:text-green-400 flex-shrink-0" />
+                          <div>
+                            <p className="font-medium text-gray-900 dark:text-white">Estimated Delivery</p>
+                            <p className="text-gray-600 dark:text-gray-300">{trackingData.estimatedDelivery}</p>
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
 
-                {/* Tracking History */}
+                {/* Tracking History with Enhanced Visuals */}
                 <div className="card">
-                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-6">
-                    Tracking History
-                  </h3>
+                  <div className="flex items-center justify-between mb-6">
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-white">
+                      Tracking History
+                    </h3>
+                    <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
+                      <motion.span 
+                        className="w-3 h-3 rounded-full bg-green-500"
+                        animate={{ 
+                          scale: [1, 1.2, 1],
+                          opacity: [1, 0.7, 1]
+                        }}
+                        transition={{ 
+                          duration: 1.5,
+                          repeat: Infinity,
+                          ease: "easeInOut"
+                        }}
+                      />
+                      <span>Live Updates</span>
+                    </div>
+                  </div>
+                  
                   <div className="space-y-6">
                     {trackingData.history.map((event, index) => (
-                      <div key={index} className="relative pl-8 pb-6 last:pb-0">
+                      <motion.div 
+                        key={index} 
+                        className="relative pl-8 pb-6 last:pb-0"
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: index * 0.1 }}
+                      >
                         {index !== trackingData.history.length - 1 && (
-                          <div className="absolute left-2 top-6 bottom-0 w-0.5 bg-gray-300 dark:bg-gray-600" />
+                          <div className="absolute left-3 top-6 bottom-0 w-0.5 bg-gradient-to-b from-primary-400 to-gray-300 dark:from-primary-600 dark:to-gray-600" />
                         )}
-                        <div className="absolute left-0 top-1 w-4 h-4 bg-primary-600 dark:bg-primary-400 rounded-full" />
-                        <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-4">
-                          <div className="flex justify-between items-start mb-2">
-                            <h4 className="font-semibold text-gray-900 dark:text-white">
+                        <div className="absolute left-0 top-1 w-6 h-6 bg-primary-100 dark:bg-primary-900 border-2 border-primary-600 dark:border-primary-400 rounded-full flex items-center justify-center">
+                          <div className="w-2 h-2 bg-primary-600 dark:bg-primary-400 rounded-full"></div>
+                        </div>
+                        <div className="bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-xl p-5 border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-md transition-shadow duration-300">
+                          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-3">
+                            <h4 className="font-bold text-gray-900 dark:text-white flex items-center gap-2">
+                              {getEventIcon(event.status)}
                               {event.status}
                             </h4>
-                            <span className="text-sm text-gray-500 dark:text-gray-400">
-                              {event.time}
-                            </span>
+                            <div className="flex items-center gap-3">
+                              <span className="text-sm font-medium text-primary-600 dark:text-primary-400 bg-primary-100 dark:bg-primary-900 px-2 py-1 rounded">
+                                {event.time}
+                              </span>
+                              <span className="text-sm text-gray-500 dark:text-gray-400">
+                                {event.date}
+                              </span>
+                            </div>
                           </div>
-                          <p className="text-sm text-gray-600 dark:text-gray-300 mb-1">
+                          <p className="text-gray-600 dark:text-gray-300 mb-3">
                             {event.description}
                           </p>
                           <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
-                            <MapPin className="h-3 w-3" />
+                            <MapPin className="h-4 w-4" />
                             <span>{event.location}</span>
-                            <span>•</span>
-                            <span>{event.date}</span>
                           </div>
                         </div>
-                      </div>
+                      </motion.div>
                     ))}
                   </div>
                 </div>
@@ -237,30 +398,7 @@ const Tracking = () => {
             )}
           </AnimatePresence>
 
-          {/* Sample Tracking Numbers */}
-          {!trackingData && !isLoading && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.3 }}
-              className="card bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800"
-            >
-              {/* <h3 className="font-semibold text-gray-900 dark:text-white mb-3">
-                Try Sample Tracking Numbers:
-              </h3> */}
-              {/* <div className="flex flex-wrap gap-2">
-                {['ABC123456789', 'XYZ987654321', 'DEF456789123'].map((sample) => (
-                  <button
-                    key={sample}
-                    onClick={() => setTrackingNumber(sample)}
-                    className="px-4 py-2 bg-white dark:bg-gray-800 text-primary-600 dark:text-primary-400 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors text-sm font-medium"
-                  >
-                    {sample}
-                  </button>
-                ))}
-              </div> */}
-            </motion.div>
-          )}
+
         </motion.div>
       </div>
     </div>
