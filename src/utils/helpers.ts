@@ -15,105 +15,46 @@ export const getTrackingData = (trackingNumber: string): TrackingData | null => 
   }
 
   // Special tracking numbers for the specific package
-  if (trackingNumber === 'XL2025YEMEN') {
+  if (trackingNumber === 'XL2025BRAZIL') {
     const trackingData: TrackingData = {
       trackingNumber,
       status: 'In Transit',
       currentLocation: 'Distribution Center - Miami, FL',
-      estimatedDelivery: 'November 26, 2025',
+      estimatedDelivery: '11/26/2025',
       history: [
         {
-          date: 'November 25, 2025',
-          time: '9:00 AM',
+          date: '11/25/2025',
+          time: '10:30 AM',
           location: 'Sender Facility - Sanaa, Yemen',
           status: 'Package received',
           description: 'Package received from sender Garth Davis'
         },
         {
-          date: 'November 25, 2025',
-          time: '2:30 PM',
+          date: '11/25/2025',
+          time: '2:15 PM',
           location: 'Export Facility - Sanaa, Yemen',
           status: 'In Transit',
           description: 'Package cleared customs and prepared for international shipment'
         },
         {
-          date: 'November 25, 2025',
-          time: '8:45 PM',
+          date: '11/25/2025',
+          time: '8:45 AM',
           location: 'International Hub - Dubai, UAE',
           status: 'In Transit',
           description: 'Package arrived at international hub for transshipment'
         },
         {
-          date: 'November 26, 2025',
+          date: '11/26/2025',
           time: '10:20 AM',
           location: 'Distribution Center - Miami, FL',
           status: 'In Transit',
           description: 'Package arrived at US distribution center'
-        }
-      ]
-    };
-    return trackingData;
-  } else if (trackingNumber === 'XL2025BRAZIL') {
-    const trackingData: TrackingData = {
-      trackingNumber,
-      status: 'Delivered',
-      currentLocation: 'Delivered to recipient - Santos Port, Brazil',
-      estimatedDelivery: 'November 26, 2025',
-      history: [
-        {
-          date: 'November 25, 2025',
-          time: '9:00 AM',
-          location: 'Sender Facility - Sanaa, Yemen',
-          status: 'Package received',
-          description: 'Package received from sender Garth Davis'
-        },
-        {
-          date: 'November 25, 2025',
-          time: '2:30 PM',
-          location: 'Export Facility - Sanaa, Yemen',
-          status: 'In Transit',
-          description: 'Package cleared customs and prepared for international shipment'
-        },
-        {
-          date: 'November 25, 2025',
-          time: '8:45 PM',
-          location: 'International Hub - Dubai, UAE',
-          status: 'In Transit',
-          description: 'Package arrived at international hub for transshipment'
-        },
-        {
-          date: 'November 26, 2025',
-          time: '10:20 AM',
-          location: 'Distribution Center - Miami, FL',
-          status: 'In Transit',
-          description: 'Package arrived at US distribution center'
-        },
-        {
-          date: 'November 26, 2025',
-          time: '2:30 PM',
-          location: 'International Hub - Houston, TX',
-          status: 'In Transit',
-          description: 'Package shipped to destination country'
-        },
-        {
-          date: 'November 26, 2025',
-          time: '6:15 PM',
-          location: 'Distribution Center - Santos, Brazil',
-          status: 'Out for Delivery',
-          description: 'Package arrived at destination distribution center'
-        },
-        {
-          date: 'November 26, 2025',
-          time: '8:30 PM',
-          location: 'Santos Port, Brazil',
-          status: 'Delivered',
-          description: 'Package delivered to recipient Marileide Dias Lourenco at 1072 Bella Street, President Prudente, Brazil'
         }
       ]
     };
     return trackingData;
   }
-
+  
   const statuses: TrackingData['status'][] = ['Pending', 'In Transit', 'Out for Delivery', 'Delivered', 'Exception'];
   const statusIndex = trackingNumber.charCodeAt(0) % statuses.length;
   const status = statuses[statusIndex];

@@ -239,7 +239,7 @@ const Tracking = () => {
                             <div className="w-6 h-6 rounded-full bg-green-500 flex items-center justify-center mb-2">
                               <Home className="h-3 w-3 text-white" />
                             </div>
-                            <span className="text-xs font-medium text-gray-700 dark:text-gray-300 text-center">San Jose, CR</span>
+                            <span className="text-xs font-medium text-gray-700 dark:text-gray-300 text-center">Brazil</span>
                           </div>
                         </div>
                       </div>
@@ -280,7 +280,7 @@ const Tracking = () => {
                             Sender Information
                           </h3>
                           <p className="text-gray-600 dark:text-gray-300 font-medium">Garth Davis</p>
-                          <p className="text-gray-600 dark:text-gray-300">Sanaa, Yemen</p>
+                          <p className="text-gray-600 dark:text-gray-300">Yemen</p>
                         </div>
                         <div className="bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-lg p-4 border border-gray-200 dark:border-gray-700 shadow-sm">
                           <h3 className="font-semibold text-gray-900 dark:text-white mb-2 flex items-center gap-2">
@@ -288,14 +288,14 @@ const Tracking = () => {
                             Receiver Information
                           </h3>
                           <p className="text-gray-600 dark:text-gray-300 font-medium">Marileide Dias Lourenco</p>
-                          <p className="text-gray-600 dark:text-gray-300">1072 Bella Street, President Prudente, Brazil</p>
+                          <p className="text-gray-600 dark:text-gray-300">Bella Street No 1072 Upper Floor, Brazil</p>
                         </div>
                         <div className="bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-lg p-4 border border-gray-200 dark:border-gray-700 shadow-sm">
                           <h3 className="font-semibold text-gray-900 dark:text-white mb-2 flex items-center gap-2">
                             <Package className="h-4 w-4 text-primary-600" />
                             Package Details
                           </h3>
-                          <p className="text-gray-600 dark:text-gray-300">Weight: 10kg</p>
+                          <p className="text-gray-600 dark:text-gray-300">Weight: 17.8kg</p>
                           <p className="text-gray-600 dark:text-gray-300">Contents: Clothing</p>
                           <p className="text-gray-600 dark:text-gray-300">Courier: X Logistics</p>
                         </div>
@@ -305,25 +305,12 @@ const Tracking = () => {
                             Shipment Timeline
                           </h3>
                           <p className="text-gray-600 dark:text-gray-300">Sent: November 25, 2025</p>
-                          <p className="text-gray-600 dark:text-gray-300">Estimated Delivery: {trackingData.estimatedDelivery}</p>
+                          <p className="text-gray-600 dark:text-gray-300">Estimated Delivery: 11/26/2025</p>
                         </div>
                       </div>
                       
                       <div className="space-y-3">
-                        <div className="flex items-center gap-3 p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
-                          <MapPin className="h-5 w-5 text-blue-600 dark:text-blue-400 flex-shrink-0" />
-                          <div>
-                            <p className="font-medium text-gray-900 dark:text-white">Current Location</p>
-                            <p className="text-gray-600 dark:text-gray-300">{trackingData.currentLocation}</p>
-                          </div>
-                        </div>
-                        <div className="flex items-center gap-3 p-3 bg-green-50 dark:bg-green-900/20 rounded-lg">
-                          <Clock className="h-5 w-5 text-green-600 dark:text-green-400 flex-shrink-0" />
-                          <div>
-                            <p className="font-medium text-gray-900 dark:text-white">Estimated Delivery</p>
-                            <p className="text-gray-600 dark:text-gray-300">{trackingData.estimatedDelivery}</p>
-                          </div>
-                        </div>
+                        {/* Removed Current Location and Estimated Delivery sections as requested */}
                       </div>
                     </div>
                   </div>
@@ -398,30 +385,6 @@ const Tracking = () => {
             )}
           </AnimatePresence>
 
-          {/* Sample Tracking Numbers */}
-          {!trackingData && !isLoading && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.3 }}
-              className="card bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800"
-            >
-              <h3 className="font-semibold text-gray-900 dark:text-white mb-3">
-                Try Sample Tracking Number:
-              </h3>
-              <div className="flex flex-wrap gap-2">
-                <button
-                  onClick={() => setTrackingNumber('XL2025BRAZIL')}
-                  className="px-4 py-2 bg-white dark:bg-gray-800 text-primary-600 dark:text-primary-400 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors text-sm font-medium"
-                >
-                  XL2025BRAZIL (Delivered)
-                </button>
-              </div>
-              <p className="mt-3 text-sm text-gray-600 dark:text-gray-300">
-                Track a package from Yemen to Brazil with sender Garth Davis and receiver Marileide Dias Lourenco
-              </p>
-            </motion.div>
-          )}
 
         </motion.div>
       </div>
