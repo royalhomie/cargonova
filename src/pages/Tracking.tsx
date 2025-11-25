@@ -287,8 +287,8 @@ const Tracking = () => {
                             <Home className="h-4 w-4 text-primary-600" />
                             Receiver Information
                           </h3>
-                          <p className="text-gray-600 dark:text-gray-300 font-medium">Cecilia Leon Jimenez</p>
-                          <p className="text-gray-600 dark:text-gray-300">Puntarenas, San Jose, Costa Rica</p>
+                          <p className="text-gray-600 dark:text-gray-300 font-medium">Marileide Dias Lourenco</p>
+                          <p className="text-gray-600 dark:text-gray-300">1072 Bella Street, President Prudente, Brazil</p>
                         </div>
                         <div className="bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-lg p-4 border border-gray-200 dark:border-gray-700 shadow-sm">
                           <h3 className="font-semibold text-gray-900 dark:text-white mb-2 flex items-center gap-2">
@@ -398,6 +398,30 @@ const Tracking = () => {
             )}
           </AnimatePresence>
 
+          {/* Sample Tracking Numbers */}
+          {!trackingData && !isLoading && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.3 }}
+              className="card bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800"
+            >
+              <h3 className="font-semibold text-gray-900 dark:text-white mb-3">
+                Try Sample Tracking Number:
+              </h3>
+              <div className="flex flex-wrap gap-2">
+                <button
+                  onClick={() => setTrackingNumber('XL2025BRAZIL')}
+                  className="px-4 py-2 bg-white dark:bg-gray-800 text-primary-600 dark:text-primary-400 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors text-sm font-medium"
+                >
+                  XL2025BRAZIL (Delivered)
+                </button>
+              </div>
+              <p className="mt-3 text-sm text-gray-600 dark:text-gray-300">
+                Track a package from Yemen to Brazil with sender Garth Davis and receiver Marileide Dias Lourenco
+              </p>
+            </motion.div>
+          )}
 
         </motion.div>
       </div>
