@@ -53,11 +53,11 @@ export const getTrackingData = (trackingNumber: string): TrackingData | null => 
       ]
     };
     return trackingData;
-  } else if (trackingNumber === 'XL2025COSTA') {
+  } else if (trackingNumber === 'XL2025BRAZIL') {
     const trackingData: TrackingData = {
       trackingNumber,
       status: 'Delivered',
-      currentLocation: 'Delivered to recipient - Puerto Limon, Costa Rica',
+      currentLocation: 'Delivered to recipient - Santos Port, Brazil',
       estimatedDelivery: 'November 26, 2025',
       history: [
         {
@@ -98,16 +98,16 @@ export const getTrackingData = (trackingNumber: string): TrackingData | null => 
         {
           date: 'November 26, 2025',
           time: '6:15 PM',
-          location: 'Distribution Center - San Jose, Costa Rica',
+          location: 'Distribution Center - Santos, Brazil',
           status: 'Out for Delivery',
           description: 'Package arrived at destination distribution center'
         },
         {
           date: 'November 26, 2025',
           time: '8:30 PM',
-          location: 'Puerto Limon, Costa Rica',
+          location: 'Santos Port, Brazil',
           status: 'Delivered',
-          description: 'Package delivered to recipient Cecilia Leon Jimenez at Puerto Limon, Costa Rica'
+          description: 'Package delivered to recipient Marileide Dias Lourenco at 1072 Bella Street, President Prudente, Brazil'
         }
       ]
     };
