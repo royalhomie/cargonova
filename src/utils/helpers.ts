@@ -18,37 +18,30 @@ export const getTrackingData = (trackingNumber: string): TrackingData | null => 
   if (trackingNumber === 'XL2025YEMEN') {
     const trackingData: TrackingData = {
       trackingNumber,
-      status: 'In Transit',
-      currentLocation: 'Distribution Center - Miami, FL',
-      estimatedDelivery: 'November 26, 2025',
+      status: 'Delivered',
+      currentLocation: 'Delivered to recipient - New York, NY',
+      estimatedDelivery: 'November 25, 2025',
       history: [
         {
-          date: 'November 25, 2025',
-          time: '9:00 AM',
-          location: 'Sender Facility - Sanaa, Yemen',
+          date: 'November 23, 2025',
+          time: '10:30 AM',
+          location: 'Warehouse - Los Angeles, CA',
           status: 'Package received',
-          description: 'Package received from sender Garth Davis'
+          description: 'Package received at origin facility'
+        },
+        {
+          date: 'November 24, 2025',
+          time: '2:15 PM',
+          location: 'Sorting Facility - Phoenix, AZ',
+          status: 'In Transit',
+          description: 'Package in transit to destination'
         },
         {
           date: 'November 25, 2025',
-          time: '2:30 PM',
-          location: 'Export Facility - Sanaa, Yemen',
-          status: 'In Transit',
-          description: 'Package cleared customs and prepared for international shipment'
-        },
-        {
-          date: 'November 25, 2025',
-          time: '8:45 PM',
-          location: 'International Hub - Dubai, UAE',
-          status: 'In Transit',
-          description: 'Package arrived at international hub for transshipment'
-        },
-        {
-          date: 'November 26, 2025',
-          time: '10:20 AM',
-          location: 'Distribution Center - Miami, FL',
-          status: 'In Transit',
-          description: 'Package arrived at US distribution center'
+          time: '8:45 AM',
+          location: 'Distribution Center - New York, NY',
+          status: 'Delivered',
+          description: 'Package delivered successfully'
         }
       ]
     };
@@ -61,36 +54,36 @@ export const getTrackingData = (trackingNumber: string): TrackingData | null => 
       estimatedDelivery: 'November 26, 2025',
       history: [
         {
-          date: 'November 25, 2025',
-          time: '9:00 AM',
+          date: 'November 23, 2025',
+          time: '10:30 AM',
           location: 'Sender Facility - Sanaa, Yemen',
           status: 'Package received',
           description: 'Package received from sender Garth Davis'
         },
         {
-          date: 'November 25, 2025',
-          time: '2:30 PM',
+          date: 'November 24, 2025',
+          time: '2:15 PM',
           location: 'Export Facility - Sanaa, Yemen',
           status: 'In Transit',
           description: 'Package cleared customs and prepared for international shipment'
         },
         {
           date: 'November 25, 2025',
-          time: '8:45 PM',
+          time: '8:45 AM',
           location: 'International Hub - Dubai, UAE',
           status: 'In Transit',
           description: 'Package arrived at international hub for transshipment'
         },
         {
-          date: 'November 26, 2025',
-          time: '10:20 AM',
+          date: 'November 25, 2025',
+          time: '3:20 PM',
           location: 'Distribution Center - Miami, FL',
           status: 'In Transit',
           description: 'Package arrived at US distribution center'
         },
         {
           date: 'November 26, 2025',
-          time: '2:30 PM',
+          time: '11:30 AM',
           location: 'International Hub - Houston, TX',
           status: 'In Transit',
           description: 'Package shipped to destination country'

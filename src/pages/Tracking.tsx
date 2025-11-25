@@ -244,17 +244,17 @@ const Tracking = () => {
                         </div>
                       </div>
                       
-                      {/* Animated Progress Indicator */}
+                      {/* Fanciful Animated Progress Indicator */}
                       <div className="mb-8">
                         <div className="flex justify-between mb-3">
                           <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Shipment Progress</span>
-                          <span className="text-sm font-medium text-primary-600 dark:text-primary-400">
+                          <span className="text-sm font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-purple-600">
                             {trackingData.status === 'Delivered' ? '100%' : trackingData.status === 'Out for Delivery' ? '85%' : trackingData.status === 'In Transit' ? '65%' : '25%'}
                           </span>
                         </div>
-                        <div className="relative w-full bg-gray-200 dark:bg-gray-700 rounded-full h-3 overflow-hidden">
+                        <div className="relative w-full bg-gray-200 dark:bg-gray-700 rounded-full h-4 overflow-hidden shadow-inner">
                           <motion.div 
-                            className="absolute top-0 left-0 h-full bg-gradient-to-r from-primary-500 to-primary-600 rounded-full" 
+                            className="absolute top-0 left-0 h-full bg-gradient-to-r from-primary-500 via-purple-500 to-primary-600 rounded-full" 
                             initial={{ width: '0%' }}
                             animate={{ 
                               width: trackingData.status === 'Delivered' ? '100%' : 
@@ -263,7 +263,8 @@ const Tracking = () => {
                             }}
                             transition={{ duration: 1.5, ease: "easeInOut" }}
                           >
-                            <div className="absolute inset-0 bg-white opacity-30 animate-pulse"></div>
+                            <div className="absolute inset-0 bg-white opacity-20 animate-pulse"></div>
+                            <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMCIgaGVpZ2h0PSIxMCI+CiAgPHJlY3Qgd2lkdGg9IjEwIiBoZWlnaHQ9IjEwIiBmaWxsPSIjZmZmIiBvcGFjaXR5PSIwLjEiLz4KICA8Y2lyY2xlIGN4PSIxIiBjeT0iMSIgcj0iMSIgZmlsbD0iI2ZmZiIgb3BhY2l0eT0iMC4yIi8+CiAgPGNpcmNsZSBjeD0iNCIgY3k9IjciIHI9IjEiIGZpbGw9IiNmZmYiIG9wYWNpdHk9IjAuMiIvPgo8L3N2Zz4=')] animate-move bg-repeat"></div>
                           </motion.div>
                         </div>
                         <div className="flex justify-between mt-2 text-xs text-gray-500 dark:text-gray-400">
@@ -304,8 +305,8 @@ const Tracking = () => {
                             <Clock className="h-4 w-4 text-primary-600" />
                             Shipment Timeline
                           </h3>
-                          <p className="text-gray-600 dark:text-gray-300">Sent: November 25, 2025</p>
-                          <p className="text-gray-600 dark:text-gray-300">Estimated Delivery: {trackingData.estimatedDelivery}</p>
+                          <p className="text-gray-600 dark:text-gray-300">Sent: {trackingNumber === 'XL2025YEMEN' ? 'November 24, 2025' : 'November 25, 2025'}</p>
+                          <p className="text-gray-600 dark:text-gray-300">Estimated Delivery: {trackingNumber === 'XL2025YEMEN' ? 'November 25, 2025' : '11/26/2025'}</p>
                         </div>
                       </div>
                       
@@ -398,30 +399,7 @@ const Tracking = () => {
             )}
           </AnimatePresence>
 
-          {/* Sample Tracking Numbers */}
-          {!trackingData && !isLoading && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.3 }}
-              className="card bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800"
-            >
-              <h3 className="font-semibold text-gray-900 dark:text-white mb-3">
-                Try Sample Tracking Number:
-              </h3>
-              <div className="flex flex-wrap gap-2">
-                <button
-                  onClick={() => setTrackingNumber('XL2025BRAZIL')}
-                  className="px-4 py-2 bg-white dark:bg-gray-800 text-primary-600 dark:text-primary-400 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors text-sm font-medium"
-                >
-                  XL2025BRAZIL (Delivered)
-                </button>
-              </div>
-              <p className="mt-3 text-sm text-gray-600 dark:text-gray-300">
-                Track a package from Yemen to Brazil with sender Garth Davis and receiver Marileide Dias Lourenco
-              </p>
-            </motion.div>
-          )}
+
 
         </motion.div>
       </div>
