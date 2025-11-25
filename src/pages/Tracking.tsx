@@ -239,22 +239,22 @@ const Tracking = () => {
                             <div className="w-6 h-6 rounded-full bg-green-500 flex items-center justify-center mb-2">
                               <Home className="h-3 w-3 text-white" />
                             </div>
-                            <span className="text-xs font-medium text-gray-700 dark:text-gray-300 text-center">San Jose, CR</span>
+                            <span className="text-xs font-medium text-gray-700 dark:text-gray-300 text-center">Brazil</span>
                           </div>
                         </div>
                       </div>
                       
-                      {/* Fanciful Animated Progress Indicator */}
+                      {/* Animated Progress Indicator */}
                       <div className="mb-8">
                         <div className="flex justify-between mb-3">
                           <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Shipment Progress</span>
-                          <span className="text-sm font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-purple-600">
+                          <span className="text-sm font-medium text-primary-600 dark:text-primary-400">
                             {trackingData.status === 'Delivered' ? '100%' : trackingData.status === 'Out for Delivery' ? '85%' : trackingData.status === 'In Transit' ? '65%' : '25%'}
                           </span>
                         </div>
-                        <div className="relative w-full bg-gray-200 dark:bg-gray-700 rounded-full h-4 overflow-hidden shadow-inner">
+                        <div className="relative w-full bg-gray-200 dark:bg-gray-700 rounded-full h-3 overflow-hidden">
                           <motion.div 
-                            className="absolute top-0 left-0 h-full bg-gradient-to-r from-primary-500 via-purple-500 to-primary-600 rounded-full" 
+                            className="absolute top-0 left-0 h-full bg-gradient-to-r from-primary-500 to-primary-600 rounded-full" 
                             initial={{ width: '0%' }}
                             animate={{ 
                               width: trackingData.status === 'Delivered' ? '100%' : 
@@ -263,8 +263,7 @@ const Tracking = () => {
                             }}
                             transition={{ duration: 1.5, ease: "easeInOut" }}
                           >
-                            <div className="absolute inset-0 bg-white opacity-20 animate-pulse"></div>
-                            <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMCIgaGVpZ2h0PSIxMCI+CiAgPHJlY3Qgd2lkdGg9IjEwIiBoZWlnaHQ9IjEwIiBmaWxsPSIjZmZmIiBvcGFjaXR5PSIwLjEiLz4KICA8Y2lyY2xlIGN4PSIxIiBjeT0iMSIgcj0iMSIgZmlsbD0iI2ZmZiIgb3BhY2l0eT0iMC4yIi8+CiAgPGNpcmNsZSBjeD0iNCIgY3k9IjciIHI9IjEiIGZpbGw9IiNmZmYiIG9wYWNpdHk9IjAuMiIvPgo8L3N2Zz4=')] animate-move bg-repeat"></div>
+                            <div className="absolute inset-0 bg-white opacity-30 animate-pulse"></div>
                           </motion.div>
                         </div>
                         <div className="flex justify-between mt-2 text-xs text-gray-500 dark:text-gray-400">
@@ -281,7 +280,7 @@ const Tracking = () => {
                             Sender Information
                           </h3>
                           <p className="text-gray-600 dark:text-gray-300 font-medium">Garth Davis</p>
-                          <p className="text-gray-600 dark:text-gray-300">Sanaa, Yemen</p>
+                          <p className="text-gray-600 dark:text-gray-300">Yemen</p>
                         </div>
                         <div className="bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-lg p-4 border border-gray-200 dark:border-gray-700 shadow-sm">
                           <h3 className="font-semibold text-gray-900 dark:text-white mb-2 flex items-center gap-2">
@@ -289,14 +288,14 @@ const Tracking = () => {
                             Receiver Information
                           </h3>
                           <p className="text-gray-600 dark:text-gray-300 font-medium">Marileide Dias Lourenco</p>
-                          <p className="text-gray-600 dark:text-gray-300">1072 Bella Street, President Prudente, Brazil</p>
+                          <p className="text-gray-600 dark:text-gray-300">Bella Street No 1072 Upper Floor, Brazil</p>
                         </div>
                         <div className="bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-lg p-4 border border-gray-200 dark:border-gray-700 shadow-sm">
                           <h3 className="font-semibold text-gray-900 dark:text-white mb-2 flex items-center gap-2">
                             <Package className="h-4 w-4 text-primary-600" />
                             Package Details
                           </h3>
-                          <p className="text-gray-600 dark:text-gray-300">Weight: 10kg</p>
+                          <p className="text-gray-600 dark:text-gray-300">Weight: 17.8kg</p>
                           <p className="text-gray-600 dark:text-gray-300">Contents: Clothing</p>
                           <p className="text-gray-600 dark:text-gray-300">Courier: X Logistics</p>
                         </div>
@@ -305,26 +304,13 @@ const Tracking = () => {
                             <Clock className="h-4 w-4 text-primary-600" />
                             Shipment Timeline
                           </h3>
-                          <p className="text-gray-600 dark:text-gray-300">Sent: {trackingNumber === 'XL2025YEMEN' ? 'November 24, 2025' : 'November 25, 2025'}</p>
-                          <p className="text-gray-600 dark:text-gray-300">Estimated Delivery: {trackingNumber === 'XL2025YEMEN' ? 'November 25, 2025' : '11/26/2025'}</p>
+                          <p className="text-gray-600 dark:text-gray-300">Sent: November 25, 2025</p>
+                          <p className="text-gray-600 dark:text-gray-300">Estimated Delivery: 11/26/2025</p>
                         </div>
                       </div>
                       
                       <div className="space-y-3">
-                        <div className="flex items-center gap-3 p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
-                          <MapPin className="h-5 w-5 text-blue-600 dark:text-blue-400 flex-shrink-0" />
-                          <div>
-                            <p className="font-medium text-gray-900 dark:text-white">Current Location</p>
-                            <p className="text-gray-600 dark:text-gray-300">{trackingData.currentLocation}</p>
-                          </div>
-                        </div>
-                        <div className="flex items-center gap-3 p-3 bg-green-50 dark:bg-green-900/20 rounded-lg">
-                          <Clock className="h-5 w-5 text-green-600 dark:text-green-400 flex-shrink-0" />
-                          <div>
-                            <p className="font-medium text-gray-900 dark:text-white">Estimated Delivery</p>
-                            <p className="text-gray-600 dark:text-gray-300">{trackingData.estimatedDelivery}</p>
-                          </div>
-                        </div>
+                        {/* Removed Current Location and Estimated Delivery sections as requested */}
                       </div>
                     </div>
                   </div>
@@ -398,7 +384,6 @@ const Tracking = () => {
               </motion.div>
             )}
           </AnimatePresence>
-
 
 
         </motion.div>

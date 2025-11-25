@@ -43,13 +43,3 @@
     text-wrap: balance;
   }
 }
-
-/* Animation for moving pattern in progress bar */
-@keyframes move {
-  0% { background-position: 0 0; }
-  100% { background-position: 10px 10px; }
-}
-
-.animate-move {
-  animation: move 1s linear infinite;
-}
