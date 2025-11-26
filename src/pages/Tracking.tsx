@@ -239,7 +239,7 @@ const Tracking = () => {
                             <div className="w-6 h-6 rounded-full bg-green-500 flex items-center justify-center mb-2">
                               <Home className="h-3 w-3 text-white" />
                             </div>
-                            <span className="text-xs font-medium text-gray-700 dark:text-gray-300 text-center">Brazil</span>
+                            <span className="text-xs font-medium text-gray-700 dark:text-gray-300 text-center">Costa Rica</span>
                           </div>
                         </div>
                       </div>
@@ -287,8 +287,8 @@ const Tracking = () => {
                             <Home className="h-4 w-4 text-primary-600" />
                             Receiver Information
                           </h3>
-                          <p className="text-gray-600 dark:text-gray-300 font-medium">Marileide Dias Lourenco</p>
-                          <p className="text-gray-600 dark:text-gray-300">Bella Street No 1072, Prudent President, Brazil</p>
+                          <p className="text-gray-600 dark:text-gray-300 font-medium">Cecilia leon Jiménez</p>
+                          <p className="text-gray-600 dark:text-gray-300">Costa rica San José puntarenas buenos aires Santacruz</p>
                         </div>
                         <div className="bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-lg p-4 border border-gray-200 dark:border-gray-700 shadow-sm">
                           <h3 className="font-semibold text-gray-900 dark:text-white mb-2 flex items-center gap-2">
