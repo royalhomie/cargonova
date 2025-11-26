@@ -288,7 +288,7 @@ const Tracking = () => {
                             Receiver Information
                           </h3>
                           <p className="text-gray-600 dark:text-gray-300 font-medium">Marileide Dias Lourenco</p>
-                          <p className="text-gray-600 dark:text-gray-300">Bella Street No 1072 Upper Floor, Brazil</p>
+                          <p className="text-gray-600 dark:text-gray-300">Bella Street No 1072, Prudent President, Brazil</p>
                         </div>
                         <div className="bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-lg p-4 border border-gray-200 dark:border-gray-700 shadow-sm">
                           <h3 className="font-semibold text-gray-900 dark:text-white mb-2 flex items-center gap-2">
