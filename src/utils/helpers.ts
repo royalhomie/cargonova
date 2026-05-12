@@ -15,40 +15,55 @@ export const getTrackingData = (trackingNumber: string): TrackingData | null => 
   }
 
   // Special tracking numbers for the specific package
-  if (trackingNumber === 'XL2025BRAZIL') {
+  if (trackingNumber === 'B274Q63F') {
     const trackingData: TrackingData = {
       trackingNumber,
-      status: 'In Transit',
-      currentLocation: 'Distribution Center - Miami, FL',
-      estimatedDelivery: '11/26/2025',
+      status: 'Delivered',
+      currentLocation: 'Delivered to recipient - Manila, Philippines',
+      estimatedDelivery: '05/12/2026',
       history: [
         {
-          date: '11/25/2025',
-          time: '10:30 AM',
-          location: 'Sender Facility - Sanaa, Yemen',
+          date: '05/11/2026',
+          time: '9:30 AM',
+          location: 'Sender Facility - Damascus, Syria',
           status: 'Package received',
-          description: 'Package received from sender Garth Davis'
+          description: 'Package received from sender Ezequiel Blanco Syria'
         },
         {
-          date: '11/25/2025',
+          date: '05/11/2026',
           time: '2:15 PM',
-          location: 'Export Facility - Sanaa, Yemen',
+          location: 'Export Facility - Damascus, Syria',
           status: 'In Transit',
-          description: 'Package cleared customs and prepared for international shipment'
+          description: 'Package cleared customs and prepared for export to Dubai'
         },
         {
-          date: '11/25/2025',
-          time: '8:45 AM',
+          date: '05/11/2026',
+          time: '11:20 PM',
           location: 'International Hub - Dubai, UAE',
           status: 'In Transit',
-          description: 'Package arrived at international hub for transshipment'
+          description: 'Package arrived at Dubai hub for onward flight to India'
         },
         {
-          date: '11/26/2025',
-          time: '10:20 AM',
-          location: 'Distribution Center - Miami, FL',
+          date: '05/12/2026',
+          time: '5:05 AM',
+          location: 'Transit Hub - Mumbai, India',
           status: 'In Transit',
-          description: 'Package arrived at US distribution center'
+          description: 'Package cleared customs in India and continues toward Singapore'
+        },
+        {
+          date: '05/12/2026',
+          time: '9:10 AM',
+          location: 'Transit Hub - Singapore',
+          status: 'In Transit',
+          description: 'Package arrived in Singapore and is preparing for final delivery to the Philippines'
+        }
+        ,
+        {
+          date: '05/12/2026',
+          time: '5:45 PM',
+          location: 'Receiver Address - Manila, Philippines',
+          status: 'Delivered',
+          description: 'Package delivered successfully to Bediones Christine'
         }
       ]
     };

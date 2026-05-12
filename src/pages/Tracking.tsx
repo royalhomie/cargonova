@@ -216,7 +216,7 @@ const Tracking = () => {
                             <div className="w-6 h-6 rounded-full bg-red-500 flex items-center justify-center mb-2">
                               <Globe className="h-3 w-3 text-white" />
                             </div>
-                            <span className="text-xs font-medium text-gray-700 dark:text-gray-300 text-center">Sanaa, YE</span>
+                            <span className="text-xs font-medium text-gray-700 dark:text-gray-300 text-center">Damascus, Syria</span>
                           </div>
                           
                           {/* Transit Points */}
@@ -229,9 +229,16 @@ const Tracking = () => {
                           
                           <div className="relative z-10 flex flex-col items-center">
                             <div className="w-6 h-6 rounded-full bg-blue-500 flex items-center justify-center mb-2">
-                              <Anchor className="h-3 w-3 text-white" />
+                              <Plane className="h-3 w-3 text-white" />
                             </div>
-                            <span className="text-xs font-medium text-gray-700 dark:text-gray-300 text-center">Miami, FL</span>
+                            <span className="text-xs font-medium text-gray-700 dark:text-gray-300 text-center">Mumbai, India</span>
+                          </div>
+                          
+                          <div className="relative z-10 flex flex-col items-center">
+                            <div className="w-6 h-6 rounded-full bg-indigo-500 flex items-center justify-center mb-2">
+                              <Plane className="h-3 w-3 text-white" />
+                            </div>
+                            <span className="text-xs font-medium text-gray-700 dark:text-gray-300 text-center">Singapore</span>
                           </div>
                           
                           {/* Destination */}
@@ -239,7 +246,7 @@ const Tracking = () => {
                             <div className="w-6 h-6 rounded-full bg-green-500 flex items-center justify-center mb-2">
                               <Home className="h-3 w-3 text-white" />
                             </div>
-                            <span className="text-xs font-medium text-gray-700 dark:text-gray-300 text-center">Costa Rica</span>
+                            <span className="text-xs font-medium text-gray-700 dark:text-gray-300 text-center">Manila, Philippines</span>
                           </div>
                         </div>
                       </div>
@@ -279,23 +286,25 @@ const Tracking = () => {
                             <Truck className="h-4 w-4 text-primary-600" />
                             Sender Information
                           </h3>
-                          <p className="text-gray-600 dark:text-gray-300 font-medium">Garth Davis</p>
-                          <p className="text-gray-600 dark:text-gray-300">Yemen</p>
+                          <p className="text-gray-600 dark:text-gray-300 font-medium">Ezequiel Blanco</p>
+                          <p className="text-gray-600 dark:text-gray-300">Syria</p>
                         </div>
                         <div className="bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-lg p-4 border border-gray-200 dark:border-gray-700 shadow-sm">
                           <h3 className="font-semibold text-gray-900 dark:text-white mb-2 flex items-center gap-2">
                             <Home className="h-4 w-4 text-primary-600" />
                             Receiver Information
                           </h3>
-                          <p className="text-gray-600 dark:text-gray-300 font-medium">Cecilia leon Jiménez</p>
-                          <p className="text-gray-600 dark:text-gray-300">Costa rica San José puntarenas buenos aires Santacruz</p>
+                          <p className="text-gray-600 dark:text-gray-300 font-medium">Bediones Christine</p>
+                          <p className="text-gray-600 dark:text-gray-300">752 Marikit Street, Santa Rita, Olongapo City</p>
+                          <p className="text-gray-600 dark:text-gray-300">Philippines 2200</p>
+                          <p className="text-gray-600 dark:text-gray-300">+63 908 336 9125</p>
                         </div>
                         <div className="bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-lg p-4 border border-gray-200 dark:border-gray-700 shadow-sm">
                           <h3 className="font-semibold text-gray-900 dark:text-white mb-2 flex items-center gap-2">
                             <Package className="h-4 w-4 text-primary-600" />
                             Package Details
                           </h3>
-                          <p className="text-gray-600 dark:text-gray-300">Weight: 17.8kg</p>
+                          <p className="text-gray-600 dark:text-gray-300">Weight: 13.5kg</p>
                           <p className="text-gray-600 dark:text-gray-300">Contents: Clothing</p>
                           <p className="text-gray-600 dark:text-gray-300">Courier: X Logistics</p>
                         </div>
@@ -304,8 +313,8 @@ const Tracking = () => {
                             <Clock className="h-4 w-4 text-primary-600" />
                             Shipment Timeline
                           </h3>
-                          <p className="text-gray-600 dark:text-gray-300">Sent: November 25, 2025</p>
-                          <p className="text-gray-600 dark:text-gray-300">Estimated Delivery: 11/26/2025</p>
+                          <p className="text-gray-600 dark:text-gray-300">Sent: May 11, 2026</p>
+                          <p className="text-gray-600 dark:text-gray-300">Estimated Delivery: May 12, 2026</p>
                         </div>
                       </div>
                       

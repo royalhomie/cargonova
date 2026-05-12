@@ -68,7 +68,7 @@ const Footer = () => {
                 <div className="w-10 h-10 rounded-lg bg-gray-800/50 flex items-center justify-center">
                   <MapPin className="h-5 w-5 text-primary-400" />
                 </div>
-                <span>1927 21st Ave, Forest Grove, Oregon</span>
+                <span>23 Roosevelt Avenue, Somerset, New Jersey 08873</span>
               </div>
             </div>
           </div>
